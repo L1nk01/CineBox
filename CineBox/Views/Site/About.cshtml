@@ -1,3 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Sobre este proyecto";
 }
+
+<div class="container mt-5">
+    <h1>About This Project</h1>
+    <p class="lead">
+        CineBox is a university project designed as a video streaming platform where users can manage and browse series.
+        It is built using <strong>ASP.NET Core MVC</strong>, <strong>Entity Framework</strong>, and follows <strong>Clean Architecture</strong> principles.
+        The project demonstrates efficient data management, user interaction, and clean code practices.
+    </p>
+
+    <section class="mt-4">
+        <h2>Key Features</h2>
+        <ul>
+            <li><strong>Series Management:</strong> Users can add, edit, and delete series, with attributes such as title, producer, and genres.</li>
+            <li><strong>Search & Filters:</strong> Provides search functionality by series name, producer, or genres for easy navigation.</li>
+            <li><strong>YouTube Integration:</strong> Series are linked with video content from YouTube, allowing for seamless viewing directly from the platform.</li>
+            <li><strong>Responsive Design:</strong> Utilizes <strong>Bootstrap 5</strong> for a user-friendly and responsive interface.</li>
+        </ul>
+    </section>
+
+    <section class="mt-4">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><strong>ASP.NET Core MVC:</strong> For handling routing, controllers, and rendering views.</li>
+            <li><strong>Entity Framework Core:</strong> For database management using code-first migrations and SQL Server.</li>
+            <li><strong>Clean Architecture:</strong> A layered architecture separating concerns into application, domain, and infrastructure layers.</li>
+            <li><strong>Bootstrap 5:</strong> For responsive and visually appealing UI design.</li>
+        </ul>
+    </section>
+
+    <section class="mt-4">
+        <h2>Purpose</h2>
+        <p>This project was developed to apply best practices in software development, database management, and user interface design, as part of an academic assignment.</p>
+    </section>
+
+    <footer class="mt-5">
+        <p>&copy; @DateTime.Now.Year - Emmanuel Campos - Cinebox</p>
+    </footer>
+</div>
