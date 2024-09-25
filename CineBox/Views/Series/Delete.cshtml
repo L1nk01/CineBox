@@ -1,0 +1,28 @@
+﻿@model Application.ViewModels.SeriesViewModels.SaveSeriesViewModel
+
+@{
+    ViewData["Title"] = $"Delete producer {Model.Name}";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h4 class="mt-1 mb-1 text-white">Delete series @Model.Name</h4>
+            </div>
+
+            <div class="card-body h-auto">
+                <p>Are you sure you want to remove the series <strong>@Model.Name</strong>?</p>
+
+                <form method="post" asp-controller="Series" asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="float-end">
+                        <a asp-controller="Site" asp-action="Series" class="btn btn-outline-warning">Cancel</a>
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

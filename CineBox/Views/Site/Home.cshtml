@@ -1,0 +1,66 @@
+﻿@model Application.ViewModels.SiteViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container">
+    <form method="get" asp-controller="Site" asp-action="Home" class="row g-4 mb-3">
+        <div class="col-6">
+            <input type="text" asp-for="SearchTerm" class="form-control" placeholder="Search by name" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary w-100">Search</button>
+        </div>
+        <div class="col-2">
+            <select asp-for="ProducerId" class="form-select" onchange="this.form.submit()">
+                <option>Filter by producer</option>
+                @foreach (var producer in Model.Producers)
+                {
+                    <option value="@producer.Id">@producer.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+            <select asp-for="GenreId" class="form-select" onchange="this.form.submit()">
+                <option>Filter by genre</option>
+                @foreach (var genre in Model.Genres)
+                {
+                    <option value="@genre.Id">@genre.Name</option>
+                }
+            </select>
+        </div>
+    </form>
+
+    <div class="row">
+        @foreach (var item in Model.Series)
+        {
+            <div class="col-12 col-md-4 mb-4 d-flex justify-content-center">
+                <div class="card" style="width: 100%;">
+                    <div class="image-container">
+                        <a asp-controller="Series" asp-action="Watch" asp-route-id="@item.Id"><img src="@item.ImageLink" class="card-img-top" alt="@item.Name"></a>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="card-text">@item.Name</h4>
+                            <p class="card-text read-more-text">@item.Description</p>
+                            <a href="javascript:void()" class="link-primary read-more" style="display: none;">Read more</a>
+                        </div>
+                        <div class="mt-2 d-flex flex-column gap-3">
+                            <div>
+                                <small class="text-muted">@item.ProducerName</small>
+                            </div>
+                            <div>
+                                <small class="bg-primary text-white rounded" style="padding: 4px 10px;">@item.PrimaryGenreName</small>
+                                @if (!string.IsNullOrEmpty(item.SecondaryGenreName))
+                                {
+                                    <small class="bg-secondary text-white rounded m-0" style="padding: 4px 10px;">@item.SecondaryGenreName</small>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

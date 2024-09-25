@@ -1,0 +1,49 @@
+﻿@model Application.ViewModels.ProducerViewModels.ProducerViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? true : false;
+
+    ViewData["Title"] = editMode ? "Creating a new producer" : $"Editing producer {Model.Name}";
+    ViewData["AspAction"] = editMode ? "Create" : "Update";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mt-1 mb-1">@ViewData["Title"]</h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Producer" asp-action="@ViewData["AspAction"]">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input type="text" asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ImageLink" class="form-label">Image Link</label>
+                            <input type="text" asp-for="ImageLink" class="form-control" required />
+                            <span asp-validation-for="ImageLink" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="float-end">
+                            <a asp-controller="Site" asp-action="Producers" class="btn btn-outline-warning">Return</a>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@model Application.ViewModels.SeriesViewModels.SaveSeriesViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? true : false;
+
+    ViewData["Title"] = editMode ? "Creating a new series" : $"Editing series {Model.Name}";
+    ViewData["AspAction"] = editMode ? "Create" : "Update";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mt-1 mb-1">@ViewData["Title"]</h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Series" asp-action="@ViewData["AspAction"]">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input type="text" asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ImageLink" class="form-label">Image Link</label>
+                            <input type="text" asp-for="ImageLink" class="form-control" required />
+                            <span asp-validation-for="ImageLink" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="VideoLink" class="form-label">Video Link</label>
+                            <input type="text" asp-for="VideoLink" class="form-control" required />
+                            <span asp-validation-for="VideoLink" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ProducerId" class="form-label">Producer</label>
+                            <select asp-for="ProducerId" class="form-select">
+                                <option>Select a producer</option>
+                                @foreach (var producer in Model.Producers)
+                                {
+                                    <option value="@producer.Key">@producer.Value</option>
+                                }    
+                            </select>
+                            <span asp-validation-for="ProducerId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PrimaryGenreId" class="form-label">Primary Genre</label>
+                            <select asp-for="PrimaryGenreId" class="form-select">
+                                <option>Select the first genre</option>
+                                @foreach (var genre in Model.Genres)
+                                {
+                                    <option value="@genre.Key">@genre.Value</option>
+                                }
+                            </select>
+                            <span asp-validation-for="PrimaryGenreId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SecondaryGenreId" class="form-label">Secondary Genre</label>
+                            <select asp-for="SecondaryGenreId" class="form-select">
+                                <option>Select the secondary genre</option>
+                                @foreach (var genre in Model.Genres)
+                                {
+                                    <option value="@genre.Key">@genre.Value</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SecondaryGenreId" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="float-end">
+                            <a asp-controller="Site" asp-action="Series" class="btn btn-outline-warning">Return</a>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
